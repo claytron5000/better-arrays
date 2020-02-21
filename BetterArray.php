@@ -15,7 +15,7 @@ class BetterArray {
 
     protected $variables;
 
-    public static function funcify(array $arr, array $variables = null)
+    public static function funcify(array $arr)
     {
         return new BetterArray($arr);
     }
@@ -25,28 +25,154 @@ class BetterArray {
         $this->arr = $arr;
     }
 
-    public function map($func) : self
+    /**
+     * ending functions
+     */
+
+    public function returnArray() : Array
+    {
+        return $this->arr;
+    }
+
+    public function pop(): mixed
+    {
+        return array_pop($this->arr);
+    }
+
+    public function product(): number
+    {
+        return array_product($this->arr);
+    }
+
+    public function shift(): mixed
+    {
+        return array_shift($this->arr);
+    }
+
+    public function sum(): number
+    {
+        return array_sum($this->arr);
+    }
+
+    public function count(): int
+    {
+        return count($this->arr);
+    }
+
+    public function in_array(mixed $needle, bool $strict = FALSE): boo
+    {
+        return in_array($needle, $this->arr, $strict);
+    }
+
+    
+
+    /**
+     * callback functions
+     */
+
+    public function map(callable $func) : self
     {
         $this->arr = array_map($func, $this->arr);
         return $this;
     }
 
-    public function filter($func) : self
+    public function filter(callable $func, int $flag = 0) : self
     {
-        $this->arr = array_filter($this->arr, $func);
+        $this->arr = $func !== NULL ? array_filter($this->arr, $func, $flag) : array_filter($this->arr);
         return $this;
     }
 
-    public function reduce($func, $initial) : self
+    public function reduce(callable $func, $initial) : self
     {
         $this->arr = array_reduce($this->arr, $func, $initial);
         return $this;
     }
 
-    public function return() : Array
+    /**
+     * utility functions
+     */
+    public function change_key_case(int $case = CASE_LOWER) : self
     {
-        return $this->arr;
+        $this->arr = array_change_key_case($this->arr, $case);
+        return $this;
     }
+
+    public function chunk(int $size, bool $preserve_keys = FALSE) : self
+    {
+        $this->arr = array_chunk($this->arr, $size, $preserve_keys);
+        return $this;
+    }
+
+    public function column(mixed $column_key, mixed $index_key = NULL) : self
+    {
+        $this->arr = array_column($this->arr, $column_key, $index_key);
+        return $this;
+    }
+
+    public function count_values() : self
+    {
+        $this->arr = array_count_values($this->arr);
+        return $this;
+    }
+
+     public function fill_keys(mixed $value) : self
+     {
+         $this->arr = array_fill_keys($this->arr, $value);
+         return $this;
+     }
+
+    public function flip() : self
+    {
+        $this->arr = array_flip($this->arr);
+        return $this;
+    }
+
+    public function keys( mixed $search_value = NULL, bool $strict = FALSE ) : self
+    {
+        $this->arr = $search_value !== NULL ? array_keys($this->arr) : array_keys($this->arr, $search_value, $strict);
+        return $this;
+    }
+
+    public function pad(int $size , mixed $value) : self
+    {
+        $this->arr = array_pad($this->arr, $size, $value);
+        return $this;
+    }
+
+    public function reverse( bool $preserve_keys = FALSE): self
+    {
+        $this->arr = array_reverse($this->arr, $preserve_keys);
+        return $this;
+    }
+
+    public function slice(int $offset , int $length = NULL , bool $preserve_keys = FALSE ): self
+    {
+        $this->arr = array_slice($this->arr, $offset, $length, $preserve_keys);
+        return $this;
+    }
+
+    public function unique(int $sort_flags = SORT_STRING): self
+    {
+        $this->arr = array_unique($this->arr, $sort_flags);
+        return $this;
+    }
+
+    public function unshift(...$args): self
+    {
+        $this->arr = array_unshift($this->arr, ...$args);
+        return $this;
+    }
+
+    public function values(): self
+    {
+        $this->arr = array_values($this->arr);
+    }
+
+
+
+
+     
+
 
     /**
      * Other possible methods:
