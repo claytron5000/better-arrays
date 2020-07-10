@@ -17,7 +17,7 @@ class BetterArrays {
 
     public static function funcify(array $arr)
     {
-        return new BetterArray($arr);
+        return new BetterArrays($arr);
     }
 
     function __construct (Array $arr)
