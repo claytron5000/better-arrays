@@ -59,7 +59,7 @@ class BetterArray {
         return count($this->arr);
     }
 
-    public function in_array(mixed $needle, bool $strict = FALSE): boo
+    public function in_array(mixed $needle, bool $strict = FALSE): boolean
     {
         return in_array($needle, $this->arr, $strict);
     }
