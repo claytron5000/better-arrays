@@ -1,5 +1,5 @@
 {
-    "name": "claytron5000/better-array",
+    "name": "claytron5000/better-arrays",
     "description": "Array wrapper for functional-type array processing.",
     "license": "mit",
     "authors": [
@@ -8,5 +8,7 @@
             "email": "claytonjsalem@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^7.2"
+    }
 }
