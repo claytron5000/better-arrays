@@ -1,7 +1,7 @@
 <?php
 
 function betterArray(array $arr) {
-    return new BetterArray($arr);
+    return new BetterArrays($arr);
 }
 
 /**
@@ -9,7 +9,7 @@ function betterArray(array $arr) {
  * @todo enable key/value processing in filter, and multi-array in reduce
  * @todo make the static method a stand-alone method
  */
-class BetterArray {
+class BetterArrays {
 
     protected $arr;
 
